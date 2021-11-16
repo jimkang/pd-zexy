@@ -35,6 +35,8 @@ static void tabdump_bang(t_tabdump *x)
   int npoints;
   t_word *vec;
 
+  printf("Hey0");
+
   if (!(A = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
     error("%s: no such array", x->x_arrayname->s_name);
   } else if (!garray_getfloatwords(A, &npoints, &vec)) {
@@ -53,10 +55,21 @@ static void tabdump_bang(t_tabdump *x)
     }
     npoints=stop-start;
 
+    FILE *f = fopen("/home/jimkang/gcw/vocode/pd-logs/tmp.txt", "w");
+    if (f == NULL)
+    {
+        printf("Error opening file!\n");
+        return;
+    }
+
     atombuf = (t_atom *)getbytes(sizeof(t_atom)*npoints);
     for (n = 0; n < npoints; n++) {
-      SETFLOAT(&atombuf[n], vec[start+n].w_float);
+      float sample = vec[start+n].w_float;
+      SETFLOAT(&atombuf[n], sample);
+      fprintf(f, "%f\n", sample);
     }
+    fclose(f);
+
     outlet_list(x->x_obj.ob_outlet, gensym("list"), npoints, atombuf);
     freebytes(atombuf,sizeof(t_atom)*npoints);
   }
