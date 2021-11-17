@@ -55,7 +55,9 @@ static void tabdump_bang(t_tabdump *x)
     }
     npoints=stop-start;
 
-    FILE *f = fopen("/home/jimkang/gcw/vocode/pd-logs/tmp.txt", "w");
+    char logPath[MAXPDSTRING];
+    sprintf(logPath, "/home/jimkang/gcw/vocode/pd-logs/%s.txt", x->x_arrayname->s_name);
+    FILE *f = fopen(logPath, "w");
     if (f == NULL)
     {
         printf("Error opening file!\n");
