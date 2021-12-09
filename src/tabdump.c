@@ -35,8 +35,6 @@ static void tabdump_bang(t_tabdump *x)
   int npoints;
   t_word *vec;
 
-  printf("Hey0");
-
   if (!(A = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
     error("%s: no such array", x->x_arrayname->s_name);
   } else if (!garray_getfloatwords(A, &npoints, &vec)) {
