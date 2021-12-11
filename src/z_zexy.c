@@ -80,6 +80,7 @@ void  sum_setup(void);                   /*  sum.c               */
 void  swap_tilde_setup(void);            /*  swap~.c             */
 void  symbol2list_setup(void);           /*  symbol2list.c       */
 void  tabdump_setup(void);               /*  tabdump.c           */
+void  logtabblock_setup(void);           /*  logtabblock.c       */
 void  tabminmax_setup(void);             /*  tabminmax.c         */
 void  tabread4_tilde_tilde_setup(void);  /*  tabread4~~.c        */
 void  tabset_setup(void);                /*  tabset.c            */
@@ -169,6 +170,7 @@ void z_zexy_setup(void)
   swap_tilde_setup();
   symbol2list_setup();
   tabdump_setup();
+  logtabblock_setup();
   tabminmax_setup();
   tabread4_tilde_tilde_setup();
   tabset_setup();
