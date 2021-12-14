@@ -116,7 +116,7 @@ static void zexy_help(void)
   post(""HEARTSYMBOL " advanced message objects");
   post("tabread4\t:: 4-point interpolating table-read object");
   post("tabdump\t\t:: dump the table as a list");
-  post("logtabblock\t\t:: log the last block of the table to a file");
+  post("logblock\t\t:: log a target block from a signal to a file");
   post("tabset\t\t:: set a table with a list");
   post("mavg\t\t:: a variable moving average filter");
   post("mean\t\t:: get the arithmetic mean of a vector");

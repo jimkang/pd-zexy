@@ -88,7 +88,7 @@ class.sources = \
 	src/swap~.c \
 	src/symbol2list.c \
 	src/tabdump.c \
-	src/logtabblock.c \
+	src/logblock~.c \
 	src/tabminmax.c \
 	src/tabread4~~.c \
 	src/tabset.c \
