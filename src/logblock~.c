@@ -88,18 +88,18 @@ static void logblock_tilde_helper(void)
        "signal~");
 }
 
-//static void logblock_set(t_logblock *x, t_float *f, t_symbol *s) {
-static void logblock_set(t_logblock *x, t_symbol *s) {
-  //x->targetIndex = *f;
+static void logblock_set(t_logblock *x, t_symbol *s, t_float f) {
+//static void logblock_set(t_logblock *x, t_symbol *s) {
+  x->targetIndex = f;
   x->logname = s;
 }
 
-//static void *logblock_new(t_float *f, t_symbol *s)
-static void *logblock_new(t_symbol *s)
+static void *logblock_new(t_symbol *s, t_float f)
+//static void *logblock_new(t_symbol *s)
 {
   t_logblock *x = (t_logblock *)pd_new(logblock_class);
-  //x->targetIndex = *f;
-  x->targetIndex = 55555;
+  x->targetIndex = f;
+  //x->targetIndex = 55555;
   x->logname = s;
   x->activate = 0;
   return (x);
@@ -109,12 +109,12 @@ ZEXY_SETUP void logblock_tilde_setup(void)
 {
   // TODO: dtor
   logblock_class = zexy_new("logblock~",
-                           logblock_new, 0, t_logblock, 0, "S");
+                           logblock_new, 0, t_logblock, 0, "SF");
   class_addbang(logblock_class, logblock_banged);
 
   zexy_addmethod(logblock_class, (t_method)nullfn, "signal", "");
   zexy_addmethod(logblock_class, (t_method)logblock_dsp, "dsp", "!");
-  zexy_addmethod(logblock_class, (t_method)logblock_set, "set", "s");
+  zexy_addmethod(logblock_class, (t_method)logblock_set, "set", "sf");
 
   zexy_addmethod(logblock_class, (t_method)logblock_tilde_helper, "help", "");
   zexy_register("logblock~");
