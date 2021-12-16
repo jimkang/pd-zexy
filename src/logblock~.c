@@ -48,23 +48,33 @@ static t_int *logblock_perform(t_int *w)
 {
   t_sample *in = (t_sample *)w[1];
   t_logblock *x = (t_logblock *)w[2];
-  printf("targetIndex: %f, logname: %s\n", x->targetIndex, x->logname->s_name);
+  //printf("targetIndex: %f, logname: %s\n", x->targetIndex, x->logname->s_name);
   int n = (int)w[3];
 
   if (x->activate) {
     x->currentIndex += 1;
 
-    //int non_zero = 0;
-    //while (n--) {
-      //if (*in++ != 0.) {
-        //non_zero = 1;
-        //break;
-      //}
-    //}
     if (x->currentIndex == x->targetIndex) {
       printf("This is it: %d", x->currentIndex);
+
+      char logPath[MAXPDSTRING];
+      sprintf(logPath, "/home/jimkang/gcw/vocode/pd-logs/%s.txt", x->logname->s_name);
+      FILE *f = fopen(logPath, "w");
+      if (f == NULL)
+      {
+        printf("Error opening file!\n");
+        return w+4;
+      }
+
+      while (n--) {
+        float sample = *in;
+        fprintf(f, "%f\n", sample);
+        in++;
+      }
+      fclose(f);
     }
-    printf("Current index: %d |", x->currentIndex);
+
+    //printf("Current index: %d |", x->currentIndex);
   }
 
   return (w+4);
@@ -89,17 +99,14 @@ static void logblock_tilde_helper(void)
 }
 
 static void logblock_set(t_logblock *x, t_symbol *s, t_float f) {
-//static void logblock_set(t_logblock *x, t_symbol *s) {
   x->targetIndex = f;
   x->logname = s;
 }
 
 static void *logblock_new(t_symbol *s, t_float f)
-//static void *logblock_new(t_symbol *s)
 {
   t_logblock *x = (t_logblock *)pd_new(logblock_class);
   x->targetIndex = f;
-  //x->targetIndex = 55555;
   x->logname = s;
   x->activate = 0;
   return (x);
