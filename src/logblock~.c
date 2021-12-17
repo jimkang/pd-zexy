@@ -48,7 +48,7 @@ static t_int *logblock_perform(t_int *w)
 {
   t_sample *in = (t_sample *)w[1];
   t_logblock *x = (t_logblock *)w[2];
-  //printf("targetIndex: %f, logname: %s\n", x->targetIndex, x->logname->s_name);
+  //printf("targetIndex: %f, logname: %s, Current index: %d\n", x->targetIndex, x->logname->s_name, x->currentIndex);
   int n = (int)w[3];
 
   if (x->activate) {
@@ -74,7 +74,6 @@ static t_int *logblock_perform(t_int *w)
       fclose(f);
     }
 
-    //printf("Current index: %d |", x->currentIndex);
   }
 
   return (w+4);
