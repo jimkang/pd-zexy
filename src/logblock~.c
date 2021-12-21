@@ -56,7 +56,7 @@ static t_int *logblock_perform(t_int *w)
       printf("This is it: %d", x->currentIndex);
 
       char logPath[MAXPDSTRING];
-      sprintf(logPath, "/home/jimkang/gcw/vocode/pd-logs/%s.txt", x->logname->s_name);
+      sprintf(logPath, "/home/jimkang/gcw/vocode/logs/%s.txt", x->logname->s_name);
       FILE *f = fopen(logPath, "w");
       if (f == NULL)
       {
