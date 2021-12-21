@@ -52,8 +52,6 @@ static t_int *logblock_perform(t_int *w)
   int n = (int)w[3];
 
   if (x->activate) {
-    x->currentIndex += 1;
-
     if (x->currentIndex == x->targetIndex) {
       printf("This is it: %d", x->currentIndex);
 
@@ -74,6 +72,7 @@ static t_int *logblock_perform(t_int *w)
       fclose(f);
     }
 
+    x->currentIndex += 1;
   }
 
   return (w+4);
