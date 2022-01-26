@@ -66,7 +66,7 @@ static t_int *logblock_perform(t_int *w)
 
       while (n--) {
         float sample = *in;
-        fprintf(f, "%f\n", sample);
+        fprintf(f, "%.15f\n", sample);
         in++;
       }
       fclose(f);
